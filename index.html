@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+			integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="./css/theme.css" />
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/styles.css" />
+		<link rel="stylesheet" href="./css/pages.css" />
+		<title>PortfolioWebsite</title>
+	</head>
+	<body>
+		<main class="site-wrapper">
+			<header class="site-header">
+				<nav class="navbar">
+					<div class="brand-logo">
+						<a href="/"><h2>folio.</h2></a>
+					</div>
+					<div class="navbar-nav">
+						<ul class="ul-default-none main-menu">
+							<li class="nav-item">Home</li>
+							<li class="nav-item" data-open="about">About me</li>
+							<li class="nav-item" data-open="contact">Contact</li>
+						</ul>
+					</div>
+				</nav>
+			</header>
+
+			<!--Hero Section-->
+			<section class="hero-bg">
+				<div class="container">
+					<div class="hero-content">
+						<div class="code-icon">
+							<i class="fas fa-code"></i>
+						</div>
+						<h2 class="header-lg">Code. Eat. Sleep.</h2>
+						<div class="sub-header">
+							I create meaningful solutions for your brands and products.
+							<br />
+							Give your customers the best experience possible.
+						</div>
+						<div class="btn btn-primary round-pill">
+							<a href="#" data-open="contact">Let's talk now</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!--Modals-->
+		<!--About Modal Page-->
+		<div
+			id="about"
+			class="full-site-modal page-block"
+			data-animation="zoomInOut">
+			<header class="modal-header">
+				<h3>About PAGE</h3>
+				<i class="fas fa-times" data-close></i>
+			</header>
+			<div class="modal-body">
+				<div class="img-wrapper">
+					<img
+						src="./assets/week 8 image assets/images/ProfessionalDiscord.png"
+						alt="head shot" />
+				</div>
+				<h2>Derek Payne</h2>
+				<p>Text 1</p>
+				<p>Text 2</p>
+				<div>
+					<div>Email Me:</div>
+					<a href="mailto:derekpayne1991@hotmail.com"
+						>derekpayne1991@hotmail.com</a
+					>
+				</div>
+			</div>
+		</div>
+
+		<!--Contact Modal Page-->
+		<div
+			id="contact"
+			class="full-site-modal page-block"
+			data-animation="zoomInOut">
+			<header class="modal-header">
+				<h3>Contact PAGE</h3>
+				<i class="fas fa-times" data-close></i>
+			</header>
+			<div class="modal-body">
+				<div class="img-wrapper">
+					<img
+						src="./assets/week 8 image assets/images/ProfessionalDiscord.png"
+						alt="head shot" />
+				</div>
+				<h2>Derek Payne</h2>
+				<p>Text 1</p>
+				<p>Text 2</p>
+				<div>
+					<div>Email Me:</div>
+					<a href="mailto:derekpayne1991@hotmail.com"
+						>derekpayne1991@hotmail.com</a
+					>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/main.js"></script>
+	</body>
+</html>
