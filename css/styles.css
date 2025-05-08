@@ -195,26 +195,6 @@
 	border-radius: 8px;
 }
 
-.card-popup-box div {
-	color: var(--color-text-opacity);
-	font-size: 0.8125rem;
-	line-height: 1.63;
-	letter-spacing: 1.63px;
-	padding-bottom: 0, 5rem;
-	font-weight: 700;
-	text-transform: uppercase;
-	pointer-events: none;
-}
-
-.card-popup-box h3 {
-	pointer-events: none;
-	color: var(--color-headings);
-	font-size: 1.3125rem;
-	letter-spacing: -0.5px;
-	font-weight: 700;
-	margin-bottom: 0;
-}
-
 .card-popup-box {
 	position: absolute;
 	bottom: 0;
@@ -242,6 +222,26 @@
 .portfolio-card:hover .card-popup-box {
 	bottom: 20px;
 	opacity: 1;
+}
+
+.card-popup-box div {
+	color: var(--color-text-opacity);
+	font-size: 0.8125rem;
+	line-height: 1.63;
+	letter-spacing: 1.63px;
+	padding-bottom: 0.5rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	pointer-events: none;
+}
+
+.card-popup-box h3 {
+	pointer-events: none;
+	color: var(--color-headings);
+	font-size: 1.3125rem;
+	letter-spacing: -0.5px;
+	font-weight: 700;
+	margin-bottom: 0;
 }
 
 .main-menu {
