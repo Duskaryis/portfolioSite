@@ -13,9 +13,6 @@ const isVisible = 'is-visible';
 
 const dataFilter = '[data-filter]';
 const portfolioData = '[data-item]';
-/* Portfolio */
-const filterLink = document.querySelectorAll(dataFilter);
-const portfolioItems = document.querySelectorAll(portfolioData);
 
 const root = document.documentElement;
 
@@ -23,6 +20,12 @@ const root = document.documentElement;
 const toggleTheme = document.querySelector(themeTab);
 const switcher = document.querySelectorAll(switcherBtn);
 const currentTheme = localStorage.getItem(theme);
+
+/* Portfolio */
+const filterLink = document.querySelectorAll(dataFilter);
+const portfolioItems = document.querySelectorAll(portfolioData);
+const searchBox = document.querySelector('#search');
+const portfolioWrapper = document.getElementById('portfolio-wrapper');
 
 /* Modal */
 const openModal = document.querySelectorAll(modalOpen);
@@ -75,6 +78,17 @@ for (const elm of switcher) {
 	});
 }
 
+searchBox.addEventListener('keyup', (e) => {
+	const searchInput = e.target.value.toLowerCase().trim();
+	portfolioItems.forEach((card) => {
+		if (card.dataset.item.includes(searchInput)) {
+			card.style.display = 'block';
+		} else {
+			card.style.display = 'none';
+		}
+	});
+});
+
 for (const link of filterLink) {
 	link.addEventListener('click', function () {
 		setActive(link, '.filter-link');
@@ -104,3 +118,91 @@ for (const elm of closeModal) {
 		this.parentElement.parentElement.classList.remove(isVisible);
 	});
 }
+
+// Portfolio Card Container
+
+const portfolioCardData = [
+	{
+		image: '../assets/week 8 image assets/images/portfolio-1.jpg',
+		category: 'Web Development',
+		title: 'Food Website',
+		id: 'web',
+	},
+	{
+		image: '../assets/week 8 image assets/images/portfolio-2.jpg',
+		category: 'App Development',
+		title: 'Shopping Website',
+		id: 'app',
+	},
+	{
+		image: '../assets/week 8 image assets/images/portfolio-3.jpg',
+		category: 'UI Design',
+		title: 'Portfolio Website',
+		id: 'ui',
+	},
+	{
+		image: '../assets/week 8 image assets/images/portfolio-4.jpg',
+		category: 'App Development',
+		title: 'Food Website',
+		id: 'app',
+	},
+	{
+		image: '../assets/week 8 image assets/images/portfolio-5.jpg',
+		category: 'Web Development',
+		title: 'Food Website',
+		id: 'web',
+	},
+	{
+		image: '../assets/week 8 image assets/images/portfolio-6.jpg',
+		category: 'Web Development',
+		title: 'Food Website',
+		id: 'web',
+	},
+	{
+		image: '../assets/week 8 image assets/images/portfolio-7.jpg',
+		category: 'UI Design',
+		title: 'Food Website',
+		id: 'web',
+	},
+	{
+		image: '../assets/week 8 image assets/images/portfolio-8.jpg',
+		category: 'Web Development',
+		title: 'Food Website',
+		id: 'web',
+	},
+];
+
+// Input : Data -> An object ( 1 of them )
+// Output: Portfolio Card
+
+function createPortfolioCard(cardData) {
+	const card = document.createElement('div');
+	card.classList = 'portfolio-card';
+	card.id = cardData.id;
+
+	const cardBody = document.createElement('div');
+	cardBody.classList = 'card-body';
+
+	const cardImg = document.createElement('img');
+	cardImg.src = cardData.image;
+	cardImg.alt = cardData.title;
+
+	const cardA = document.createElement('a');
+	cardA.classList = 'card-popup-box';
+
+	const cardCategory = document.createElement('div');
+	cardCategory.innerHTML = cardData.category;
+
+	const cardTitle = document.createElement('h3');
+	cardTitle.innerHTML = cardData.title;
+
+	card.appendChild(cardBody);
+	cardBody.appendChild(cardA);
+	cardBody.appendChild(cardImg);
+	cardBody.appendChild(cardCategory);
+	cardBody.appendChild(cardTitle);
+
+	portfolioWrapper.appendChild(card);
+}
+
+portfolioCardData.map((cardData) => createPortfolioCard(cardData));

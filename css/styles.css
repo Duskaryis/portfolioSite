@@ -193,6 +193,7 @@
 	height: 255px;
 	object-fit: cover;
 	border-radius: 8px;
+	aspect-ratio: 1;
 }
 
 .card-popup-box {
