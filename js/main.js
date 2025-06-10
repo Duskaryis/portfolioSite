@@ -24,6 +24,9 @@ const currentTheme = localStorage.getItem(theme);
 /* Portfolio */
 const filterLink = document.querySelectorAll(dataFilter);
 const portfolioItems = document.querySelectorAll(portfolioData);
+
+//Empty array at portfolioItems
+
 const searchBox = document.querySelector('#search');
 const portfolioWrapper = document.getElementById('portfolio-wrapper');
 
@@ -80,6 +83,7 @@ for (const elm of switcher) {
 
 searchBox.addEventListener('keyup', (e) => {
 	const searchInput = e.target.value.toLowerCase().trim();
+	console.log(portfolioItems);
 	portfolioItems.forEach((card) => {
 		if (card.dataset.item.includes(searchInput)) {
 			card.style.display = 'block';
@@ -93,6 +97,7 @@ for (const link of filterLink) {
 	link.addEventListener('click', function () {
 		setActive(link, '.filter-link');
 		const filter = this.dataset.filter;
+		portfolioItems = document.querySelectorAll(portfolioData);
 		portfolioItems.forEach((card) => {
 			if (filter === 'all') {
 				card.style.display = 'block';
@@ -105,7 +110,7 @@ for (const link of filterLink) {
 	});
 }
 
-// Full Site Modal "open buttons"
+// Modal/Full Site Modal "open buttons"
 for (const elm of openModal) {
 	elm.addEventListener('click', function () {
 		const modalId = this.dataset.open;
@@ -115,94 +120,96 @@ for (const elm of openModal) {
 
 for (const elm of closeModal) {
 	elm.addEventListener('click', function () {
-		this.parentElement.parentElement.classList.remove(isVisible);
+		this.parentElement.parentElement.parentElement.classList.remove(isVisible);
 	});
 }
 
-// Portfolio Card Container
+// Modal
+document.addEventListener('click', (e) => {
+	console.log(e.target, document.querySelector('.modal.is-visible'));
+	if (e.target === document.querySelector('.modal.is-visible')) {
+		document.querySelector('.modal.is-visible').classList.remove(isVisible);
+	}
+});
+
+document.addEventListener('keyup', (e) => {
+	// console.log(e.key);
+	if (e.key === 'Escape') {
+		document.querySelector('.modal.is-visible').classList.remove(isVisible);
+	}
+});
+
+// Portfolio-Card Container
 
 const portfolioCardData = [
 	{
 		image: '../assets/week 8 image assets/images/portfolio-1.jpg',
 		category: 'Web Development',
 		title: 'Food Website',
-		id: 'web',
+		item: 'web',
+		open: 'web-1',
 	},
 	{
 		image: '../assets/week 8 image assets/images/portfolio-2.jpg',
 		category: 'App Development',
 		title: 'Shopping Website',
-		id: 'app',
+		item: 'app',
 	},
 	{
 		image: '../assets/week 8 image assets/images/portfolio-3.jpg',
 		category: 'UI Design',
 		title: 'Portfolio Website',
-		id: 'ui',
+		item: 'ui',
 	},
 	{
 		image: '../assets/week 8 image assets/images/portfolio-4.jpg',
 		category: 'App Development',
 		title: 'Food Website',
-		id: 'app',
+		item: 'app',
 	},
 	{
 		image: '../assets/week 8 image assets/images/portfolio-5.jpg',
 		category: 'Web Development',
 		title: 'Food Website',
-		id: 'web',
+		item: 'web',
 	},
 	{
 		image: '../assets/week 8 image assets/images/portfolio-6.jpg',
 		category: 'Web Development',
 		title: 'Food Website',
-		id: 'web',
+		item: 'web',
 	},
 	{
 		image: '../assets/week 8 image assets/images/portfolio-7.jpg',
 		category: 'UI Design',
 		title: 'Food Website',
-		id: 'web',
+		item: 'web',
 	},
 	{
 		image: '../assets/week 8 image assets/images/portfolio-8.jpg',
 		category: 'Web Development',
 		title: 'Food Website',
-		id: 'web',
+		item: 'web',
 	},
 ];
 
-// Input : Data -> An object ( 1 of them )
-// Output: Portfolio Card
-
-function createPortfolioCard(cardData) {
+portfolioCardData.forEach((item) => {
 	const card = document.createElement('div');
-	card.classList = 'portfolio-card';
-	card.id = cardData.id;
+	card.className = 'portfolio-card';
+	card.dataset.item = item.item;
+	console.log('card dataset: ', item.item);
 
-	const cardBody = document.createElement('div');
-	cardBody.classList = 'card-body';
+	card.dataset.open = item.open;
+	console.log('card open: ', item.open);
 
-	const cardImg = document.createElement('img');
-	cardImg.src = cardData.image;
-	cardImg.alt = cardData.title;
-
-	const cardA = document.createElement('a');
-	cardA.classList = 'card-popup-box';
-
-	const cardCategory = document.createElement('div');
-	cardCategory.innerHTML = cardData.category;
-
-	const cardTitle = document.createElement('h3');
-	cardTitle.innerHTML = cardData.title;
-
-	card.appendChild(cardBody);
-	cardBody.appendChild(cardA);
-	cardBody.appendChild(cardImg);
-	cardBody.appendChild(cardCategory);
-	cardBody.appendChild(cardTitle);
-
+	card.innerHTML = `
+    	<div class="card-body">
+			<img src="${item.image}" alt="${item.title}">
+			<div class="card-popup-box">
+				<div>${item.category}</div>
+				<h3>${item.title}</h3>
+			</div>
+		</div>
+	`;
 	portfolioWrapper.appendChild(card);
-}
-
-portfolioCardData.map((cardData) => createPortfolioCard(cardData));
+});
