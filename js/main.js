@@ -110,35 +110,6 @@ for (const link of filterLink) {
 	});
 }
 
-// Modal/Full Site Modal "open buttons"
-for (const elm of openModal) {
-	elm.addEventListener('click', function () {
-		const modalId = this.dataset.open;
-		document.getElementById(modalId).classList.add(isVisible);
-	});
-}
-
-for (const elm of closeModal) {
-	elm.addEventListener('click', function () {
-		this.parentElement.parentElement.parentElement.classList.remove(isVisible);
-	});
-}
-
-// Modal
-document.addEventListener('click', (e) => {
-	console.log(e.target, document.querySelector('.modal.is-visible'));
-	if (e.target === document.querySelector('.modal.is-visible')) {
-		document.querySelector('.modal.is-visible').classList.remove(isVisible);
-	}
-});
-
-document.addEventListener('keyup', (e) => {
-	// console.log(e.key);
-	if (e.key === 'Escape') {
-		document.querySelector('.modal.is-visible').classList.remove(isVisible);
-	}
-});
-
 // Portfolio-Card Container
 
 const portfolioCardData = [
@@ -154,12 +125,14 @@ const portfolioCardData = [
 		category: 'App Development',
 		title: 'Shopping Website',
 		item: 'app',
+		open: 'app-1',
 	},
 	{
 		image: '../assets/week 8 image assets/images/portfolio-3.jpg',
 		category: 'UI Design',
 		title: 'Portfolio Website',
 		item: 'ui',
+		open: 'ui-1',
 	},
 	{
 		image: '../assets/week 8 image assets/images/portfolio-4.jpg',
@@ -212,4 +185,34 @@ portfolioCardData.forEach((item) => {
 		</div>
 	`;
 	portfolioWrapper.appendChild(card);
+});
+
+// Modal/Full Site Modal "open buttons"
+for (const elm of openModal) {
+	elm.addEventListener('click', function () {
+		const modalId = this.dataset.open;
+		console.log('modal id: ', modalId);
+		document.getElementById(modalId).classList.add(isVisible);
+	});
+}
+
+for (const elm of closeModal) {
+	elm.addEventListener('click', function () {
+		this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+	});
+}
+
+// Modal
+document.addEventListener('click', (e) => {
+	console.log(e.target, document.querySelector('.modal.is-visible'));
+	if (e.target === document.querySelector('.modal.is-visible')) {
+		document.querySelector('.modal.is-visible').classList.remove(isVisible);
+	}
+});
+
+document.addEventListener('keyup', (e) => {
+	console.log(e.key);
+	if (e.key === 'Escape') {
+		document.querySelector('.modal.is-visible').classList.remove(isVisible);
+	}
 });
