@@ -30,10 +30,6 @@ const portfolioItems = document.querySelectorAll(portfolioData);
 const searchBox = document.querySelector('#search');
 const portfolioWrapper = document.getElementById('portfolio-wrapper');
 
-/* Modal */
-const openModal = document.querySelectorAll(modalOpen);
-const closeModal = document.querySelectorAll(modalClose);
-
 const setActive = (elm, selector) => {
 	if (document.querySelector(`${selector}.${active}`) !== null) {
 		document.querySelector(`${selector}.${active}`).classList.remove(active);
@@ -170,10 +166,7 @@ portfolioCardData.forEach((item) => {
 	const card = document.createElement('div');
 	card.className = 'portfolio-card';
 	card.dataset.item = item.item;
-	console.log('card dataset: ', item.item);
-
 	card.dataset.open = item.open;
-	console.log('card open: ', item.open);
 
 	card.innerHTML = `
     	<div class="card-body">
@@ -185,6 +178,82 @@ portfolioCardData.forEach((item) => {
 		</div>
 	`;
 	portfolioWrapper.appendChild(card);
+});
+
+const portfolioPopupModal = document.getElementById('popup-modal');
+
+const popupPortfolioModalData = [
+	{
+		open: 'web-1',
+		title: 'Web Project 1',
+		image: './assets/week 8 image assets/images/portfolio-1.jpg',
+		descriptionShort: 'My first awesome website',
+		description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+		descriptionExtended: 'Provident quibusdam temporibus magnam!',
+	},
+	{
+		open: 'app-1',
+		title: 'App Project 1',
+		image: './assets/week 8 image assets/images/portfolio-2.jpg',
+		descriptionShort: 'Another cool project',
+		description: 'Lorem ipsum dolor sit amet.',
+		descriptionExtended: 'Built using HTML, CSS, and JavaScript.',
+	},
+	{
+		open: 'ui-1',
+		title: 'UI Project 1',
+		image: './assets/week 8 image assets/images/portfolio-3.jpg',
+		descriptionShort: 'Another cool project',
+		description: 'Lorem ipsum dolor sit amet.',
+		descriptionExtended: 'Built using HTML, CSS, and JavaScript.',
+	},
+];
+
+popupPortfolioModalData.forEach((item) => {
+	const modal = document.createElement('div');
+	modal.className = 'modal';
+	modal.id = item.open;
+	modal.setAttribute('data-animation', 'slideInOutTop');
+
+	modal.innerHTML = `
+		<div class="modal-dialog">
+			<header class="modal-header">
+				<h3>${item.title}</h3>
+				<i class="fas fa-times" data-close></i>
+			</header>
+			<div class="modal-body">
+				<div class="img-wrapper">
+					<img src="${item.image}" alt="${item.title}" />
+				</div>
+				<div class="text-wrapper">
+					<p><strong>${item.descriptionShort}</strong></p>
+					<p>${item.description}</p>
+					<p>${item.descriptionExtended}</p>
+				</div>
+			</div>
+		</div>
+	`;
+
+	portfolioPopupModal.appendChild(modal);
+});
+
+/* Modal */
+const openModal = document.querySelectorAll(modalOpen);
+const closeModal = document.querySelectorAll(modalClose);
+
+// Modal
+document.addEventListener('click', (e) => {
+	console.log(e.target, document.querySelector('.modal.is-visible'));
+	if (e.target === document.querySelector('.modal.is-visible')) {
+		document.querySelector('.modal.is-visible').classList.remove(isVisible);
+	}
+});
+
+document.addEventListener('keyup', (e) => {
+	console.log(e.key);
+	if (e.key === 'Escape') {
+		document.querySelector('.modal.is-visible').classList.remove(isVisible);
+	}
 });
 
 // Modal/Full Site Modal "open buttons"
@@ -201,18 +270,3 @@ for (const elm of closeModal) {
 		this.parentElement.parentElement.parentElement.classList.remove(isVisible);
 	});
 }
-
-// Modal
-document.addEventListener('click', (e) => {
-	console.log(e.target, document.querySelector('.modal.is-visible'));
-	if (e.target === document.querySelector('.modal.is-visible')) {
-		document.querySelector('.modal.is-visible').classList.remove(isVisible);
-	}
-});
-
-document.addEventListener('keyup', (e) => {
-	console.log(e.key);
-	if (e.key === 'Escape') {
-		document.querySelector('.modal.is-visible').classList.remove(isVisible);
-	}
-});
