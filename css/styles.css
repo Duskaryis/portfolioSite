@@ -312,6 +312,12 @@
 	transform: translateX(75%);
 }
 
+.review-item:not(.active):not(.prev):not(.next) {
+	opacity: 0;
+	pointer-events: none;
+	z-index: -1;
+}
+
 .review-item .review-text {
 	padding-bottom: 2.5rem;
 	text-align: left;

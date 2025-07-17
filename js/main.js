@@ -189,7 +189,7 @@ const popupPortfolioModalData = [
 		image: './assets/week 8 image assets/images/portfolio-1.jpg',
 		descriptionShort: 'My first awesome website',
 		description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-		descriptionExtended: 'Provident quibusdam temporibus magnam!',
+		descriptionExtended: 'Built using HTML, CSS, and JavaScript.',
 	},
 	{
 		open: 'app-1',
