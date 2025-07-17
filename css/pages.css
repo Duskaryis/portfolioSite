@@ -2,7 +2,9 @@
 	background: var(--bg);
 }
 
-#about .modal-body {
+#about .modal-body,
+#contact .modal-body {
+	display: flex;
 	margin-top: 5rem;
 	padding: 2rem;
 	flex-wrap: wrap;
@@ -29,6 +31,14 @@
 	font-size: 1.25rem;
 }
 
+#contact .modal-body {
+	display: block;
+}
+
+.folio-form .form-control {
+	display: block;
+}
+
 .marquee {
 	width: var(--marquee-width);
 	height: var(--marquee-height);
@@ -41,6 +51,7 @@
 	list-style: none;
 	display: flex;
 	height: 100%;
+	animation: scrolling var(--marquee-duration-animation) linear infinite;
 }
 
 .marquee-content li {
@@ -50,6 +61,7 @@
 	align-items: center;
 	max-height: 100%;
 	white-space: nowrap;
+	flex-shrink: 0;
 	font-size: calc(var(--marquee-height) * 3 / 4);
 }
 
@@ -71,4 +83,15 @@
 .marquee:after {
 	right: 0;
 	background: linear-gradient(to left, var(--bg) 0% transparent 100%);
+}
+
+@keyframes scrolling {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(
+			calc(-1 * var(--marquee-elm-width) * var(--marquee-elms))
+		);
+	}
 }
