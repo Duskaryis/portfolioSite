@@ -3,8 +3,8 @@
 	--marquee-height: 15vh;
 	--marquee-elms-displayed: 5;
 	--marquee-elms: 10;
-	--marquee-elm-width: cal(
-		var(--marquee-elm-width) / var(--marquee-elms-displayed)
+	--marquee-elm-width: calc(
+		var(--marquee-width) / var(--marquee-elms-displayed)
 	);
 	--marquee-duration-animation: calc(var(--marquee-elms) * 3s);
 }
