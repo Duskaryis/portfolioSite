@@ -4,8 +4,6 @@
 
 #about .modal-body,
 #contact .modal-body {
-	display: flex;
-	margin-top: 5rem;
 	padding: 2rem;
 	flex-wrap: wrap;
 }
@@ -35,8 +33,24 @@
 	display: block;
 }
 
+.contact-text {
+	padding-bottom: 3.5rem;
+}
+
 .folio-form .form-control {
 	display: block;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	max-width: 500px;
+	width: 100%;
+	color: var(--color-text);
+	padding: 0 0 5px 0;
+	line-height: 26px;
+	margin-bottom: 40px;
+	border-bottom: 1px solid var(--border);
+	outline: none;
+	background: transparent;
 }
 
 .marquee {
